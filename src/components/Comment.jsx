@@ -2,36 +2,40 @@ import { ThumbsUp, Trash } from 'phosphor-react'
 import styles from './Comment.module.css'
 import { Avatar } from './Avatar'
 
-export function Comment({ content }) {
-    return (
-      <div className={styles.comment}>
-        <Avatar hasBorder={false} src='https://github.com/qustavoleite.png'/>
+export function Comment({ content, onDeleteComment }) {
+  function handleDeleteComment() {
+    onDeleteComment(content)
+  }
 
-        <div className={styles.commentBox}>
-          <div className={styles.commentContent}>
-            <header>
-              <div className={styles.authorAndTime}>
-                <strong>Gustavo Leite</strong>
-                <time title='11 de Maio às 8:21' dateTime='2025-01-30 08:21:54'>
-                  Cerca de 1h atrás
-                </time>
-              </div>
+  return (
+    <div className={styles.comment}>
+      <Avatar hasBorder={false} src='https://github.com/qustavoleite.png' />
 
-              <button title='Deletar comentários'>
-                <Trash size={24} />
-              </button>
-            </header>
+      <div className={styles.commentBox}>
+        <div className={styles.commentContent}>
+          <header>
+            <div className={styles.authorAndTime}>
+              <strong>Gustavo Leite</strong>
+              <time title='11 de Maio às 8:21' dateTime='2025-01-30 08:21:54'>
+                Cerca de 1h atrás
+              </time>
+            </div>
 
-            <p>{content}</p>
-          </div>
-
-          <footer>
-            <button>
-              <ThumbsUp />
-              Aplaudir <span>20</span>
+            <button onClick={handleDeleteComment} title='Deletar comentários'>
+              <Trash size={24} />
             </button>
-          </footer>
+          </header>
+
+          <p>{content}</p>
         </div>
+
+        <footer>
+          <button>
+            <ThumbsUp />
+            Aplaudir <span>20</span>
+          </button>
+        </footer>
       </div>
-    )
+    </div>
+  )
 }
